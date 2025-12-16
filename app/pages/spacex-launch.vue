@@ -47,26 +47,47 @@
   <NuxtPage/>
 
   <v-container>
-    <v-table>
-      <thead>
-        <tr>
-          <th class="text-left">Mission Name</th>
-          <th class="text-left">Launch Date</th>
-          <th class="text-left">Launch Site</th>
-          <th class="text-left">Rocket</th>
-          <th class="text-left">Launch Details</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr v-for="launch in launches" :key="launch.mission_name">
-          <td>{{ launch.mission_name ?? "N/A"}}</td>
-          <td>{{ launch.launch_date_utc ?? "N/A"}}</td>
-          <td>{{ launch.launch_site?.site_name_long ?? "N/A" }}</td>
-          <td>{{ launch.rocket?.rocket_name ?? "N/A"}}</td>
-          <td>{{ launch.details ?? "N/A"}}</td>
-        </tr>
-      </tbody>
-    </v-table>
+    <v-row 
+        class="w-100 align-center justify-center">
+      <v-col class="text-center">
+        <strong>Mission Name</strong>
+      </v-col>
+      <v-col class="text-center">
+        <strong>Launch Date</strong>
+      </v-col>
+      <v-col class="text-center">
+        <strong>Launch Site</strong>
+      </v-col>
+      <v-col class="text-center">
+        <strong>Rocket</strong>
+      </v-col>
+    </v-row>
+    <v-expansion-panels>
+      <v-expansion-panel
+      v-for="launch in launches"
+      :key="launch.mission_name"
+      >
+        <v-expansion-panel-title>
+          <v-row class="w-100 align-center justify-center">
+            <v-col  >
+              <strong>{{ launch.mission_name ?? 'No mission name data Available.' }}</strong>
+            </v-col>
+            <v-col  class="text-center">
+              {{ launch.launch_date_utc ?? 'No launch date data Available.' }}
+            </v-col>
+            <v-col  class="text-center">
+              {{ launch.launch_site?.site_name_long ?? 'No launch site data Available.' }}
+            </v-col>
+            <v-col  class="text-center">
+              {{ launch.rocket?.rocket_name ?? 'No rocket data Available.' }}
+            </v-col>
+          </v-row>
+        </v-expansion-panel-title>
+        <v-expansion-panel-text>
+          {{ launch.details ?? 'No launch details available.' }}
+        </v-expansion-panel-text>
+      </v-expansion-panel>
+    </v-expansion-panels>
   </v-container>
 </template>
 
