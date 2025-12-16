@@ -1,19 +1,33 @@
 <template>
 	<v-app-bar scroll-behavior="hide">
-        <v-app-bar-nav-icon variant="text" @click.stop="drawer = !drawer"></v-app-bar-nav-icon>
 
         <v-toolbar-title>My files</v-toolbar-title>
 
         <template v-if="$vuetify.display.mdAndUp">
-          <v-btn icon="mdi-magnify" variant="text"></v-btn>
+			<v-btn 
+				icon="mdi-magnify" 
+				variant="text"
+				>
+			</v-btn>
 
-          <v-btn icon="mdi-filter" variant="text"></v-btn>
-        </template>
+			<v-btn 
+				icon="mdi-filter" 
+				variant="text"
+				>
+			</v-btn>
+		</template>
 
-        <v-btn icon="mdi-dots-vertical" variant="text"></v-btn>
-      </v-app-bar>
+		<v-btn 
+			icon="mdi-dots-vertical" 
+			variant="text"
+			>
+		</v-btn>
+    </v-app-bar>
 
-    <v-navigation-drawer v-model="drawer">
+    <v-navigation-drawer 
+		expand-on-hover
+        permanent
+        rail>
 	  <v-list nav>
 		<v-list-item
 		title="Home Page"
