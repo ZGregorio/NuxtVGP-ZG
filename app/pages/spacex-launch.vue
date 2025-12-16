@@ -59,7 +59,11 @@
       </thead>
       <tbody>
         <tr v-for="launch in launches" :key="launch.mission_name">
-          <td>{{ launch.mission_name }}</td>
+          <td>{{ launch.mission_name ?? "N/A"}}</td>
+          <td>{{ launch.launch_date_utc ?? "N/A"}}</td>
+          <td>{{ launch.launch_site?.site_name_long ?? "N/A" }}</td>
+          <td>{{ launch.rocket?.rocket_name ?? "N/A"}}</td>
+          <td>{{ launch.details ?? "N/A"}}</td>
         </tr>
       </tbody>
     </v-table>
