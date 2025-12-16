@@ -27,17 +27,16 @@
     <v-navigation-drawer 
 		expand-on-hover
         permanent
-        rail>
+        rail
+		>
 	  <v-list nav>
 		<v-list-item
 		title="Home Page"
-		component="NuxtLink"
 		to="/"
 		/>
 
 		<v-list-item
 		title="SpaceX Launch Details"
-		component="NuxtLink"
 		to="/spacex-launch"
 		/>
 	  </v-list>
