@@ -33,11 +33,13 @@
 		<v-list-item
 		title="Home Page"
 		to="/"
+		prepend-icon="mdi-home"
 		/>
 
 		<v-list-item
 		title="SpaceX Launch Details"
 		to="/spacex-launch"
+		prepend-icon="mdi-rocket"
 		/>
 	  </v-list>
     </v-navigation-drawer>
@@ -143,9 +145,6 @@
 	</v-container>
 </template>
 <script lang="ts" setup>
-import { ref } from 'vue'
-
-const drawer = ref(false)
 const store = useCounter()
 const selection = ref(0)
 const query = gql`
