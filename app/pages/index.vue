@@ -1,8 +1,13 @@
 <template>
 	<NuxtPage/>
 
-	<v-container>
-		breh
+	<v-container class="text-center">
+		<h1 style="font-size: xx-large;">
+			Welcome to the SpaceX API Project
+		</h1>
+		<br></br>
+		<p>This exam serves as both a practice and a way to identify my strengths and areas for improvement.</p>
+		<p>(Apologies for the lack of design. I didn't have enough time but I might complete this mini-project after holidays)</p>
 	</v-container>
 </template>
 <script lang="ts" setup>
