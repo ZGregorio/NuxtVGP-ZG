@@ -2,9 +2,9 @@ import { defineStore } from 'pinia';
 
 interface Rocket {
     rocket: {
-        id: number
-        name: string
+        rocket_name: string
     }
+    
 }
 
 interface FavoritesState {
@@ -21,8 +21,8 @@ export const useFavoritesStore = defineStore('favorites', {
         if (this.favorites.includes(rocket) === false) 
             return this.favorites.push(rocket)
     },
-    removeFavorite(id: number) {
-        this.favorites = this.favorites.filter(r => r.rocket.id !== id)
+    removeFavorite(rocket_name: string) {
+        this.favorites = this.favorites.filter(r => r.rocket.rocket_name !== rocket_name)
     },
     clearFavorites() {
         this.favorites = []

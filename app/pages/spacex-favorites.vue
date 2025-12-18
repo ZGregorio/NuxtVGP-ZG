@@ -1,28 +1,46 @@
 <template>
 	<NuxtPage/>
-
-	<v-container>
-		bruh
-	</v-container>
+    <v-container class="text-center">
+        <v-table striped="even" >
+            <thead>
+            <tr>
+                <th 
+                class="text-center"
+                >
+                <strong>Favorite Rocket Name/s</strong> 
+                </th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr
+                v-for="rocket in favoritesStore.favorites"
+                class="text-center"
+            >
+                <td>{{ rocket.rocket.rocket_name }}</td>
+            </tr>
+            </tbody>
+        </v-table>
+        <br></br>
+        <v-hover v-slot="{ isHovering, props }" >
+            <v-btn 
+                elevation="2" 
+                @click="favoritesStore.clearFavorites()"
+                x-small 
+                rounded
+                prepend-icon="mdi-alpha-x-circle"
+                size="large"
+                v-bind:="props"
+                :style="{ 'background-color': isHovering ? 'red' : 'white' }"
+            >
+            <strong>Clear Favorites</strong>
+            </v-btn>
+        </v-hover>
+    </v-container>
 </template>
 <script lang="ts" setup>
-const store = useCounter()
-const selection = ref(0)
-const query = gql`
-	query getShips {
-		ships {
-			id
-			name
-			active
-		}
-	}
-`
-const { data } = useAsyncQuery<{
-	ships: {
-		id: string
-		name: string
-		active: boolean
-	}[]
-}>(query)
-const ships = computed(() => data.value?.ships ?? [])
+    import { useFavoritesStore } from '~/stores/favorites'
+    const favoritesStore = useFavoritesStore()
+    const toggleFavorite = useFavoritesStore()
+
+    
 </script>
