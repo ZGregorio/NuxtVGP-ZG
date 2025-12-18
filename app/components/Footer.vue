@@ -24,7 +24,7 @@
                     size="large"
                     block
                 >
-                Dev logs
+                <strong>Dev logs</strong>
                 </v-btn>
             </div>
         </v-footer>
