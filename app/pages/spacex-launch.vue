@@ -7,12 +7,6 @@
       variant="text"
       >
       </v-btn>
-
-      <v-btn 
-      icon="mdi-filter" 
-      variant="text"
-      >
-      </v-btn>
     </template>
 
     <v-btn 
@@ -47,12 +41,23 @@
   <NuxtPage/>
 
   <v-container>
-    <v-select
-      label="Filter by Year"
-      :items="availableYears"
-      v-model="selectedYear"
-      clearable
-    ></v-select>
+    <v-row>
+      <v-col cols="11">
+        <v-select
+          label="Filter by Year"
+          :items="availableYears"
+          v-model="selectedYear"
+          clearable
+        ></v-select>
+      </v-col>
+      <v-col cols="1">
+        <v-btn 
+          icon="mdi-filter" 
+          variant="text"
+          >
+        </v-btn>
+      </v-col>
+    </v-row>
     <v-row 
         class="w-100 align-center justify-center">
       <v-col class="text-center">
