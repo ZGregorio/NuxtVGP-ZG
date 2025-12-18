@@ -62,6 +62,7 @@
         <strong>Rocket</strong>
       </v-col>
     </v-row>
+    <br></br>
     <v-expansion-panels>
       <v-expansion-panel
       v-for="launch in launches"
@@ -73,7 +74,7 @@
               <strong>{{ launch.mission_name ?? 'No mission name data Available.' }}</strong>
             </v-col>
             <v-col  class="text-center">
-              {{ launch.launch_date_utc ?? 'No launch date data Available.' }}
+              {{ new Date(launch.launch_date_utc).toLocaleDateString() ?? 'No launch date data Available.' }}
             </v-col>
             <v-col  class="text-center">
               {{ launch.launch_site?.site_name_long ?? 'No launch site data Available.' }}
