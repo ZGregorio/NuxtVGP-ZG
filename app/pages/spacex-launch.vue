@@ -33,6 +33,13 @@
         title="SpaceX Launch Details"
         component="NuxtLink"
         to="/spacex-launch"
+        prepend-icon="mdi-rocket-launch"
+      />
+
+      <v-list-item
+        title="SpaceX Rocket Details"
+        component="NuxtLink"
+        to="/spacex-rocket"
         prepend-icon="mdi-rocket"
       />
     </v-list>

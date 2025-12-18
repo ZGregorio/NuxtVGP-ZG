@@ -39,6 +39,12 @@
 		<v-list-item
 		title="SpaceX Launch Details"
 		to="/spacex-launch"
+		prepend-icon="mdi-rocket-launch"
+		/>
+
+		<v-list-item
+		title="SpaceX Rocket Details"
+		to="/spacex-rocket"
 		prepend-icon="mdi-rocket"
 		/>
 	  </v-list>
