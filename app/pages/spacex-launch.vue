@@ -51,6 +51,7 @@
       label="Filter by Year"
       :items="availableYears"
       v-model="selectedYear"
+      clearable
     ></v-select>
     <v-row 
         class="w-100 align-center justify-center">
