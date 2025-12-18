@@ -54,6 +54,7 @@
         <v-btn 
           icon="mdi-filter" 
           variant="text"
+          @click="sortToggle"
           >
         </v-btn>
       </v-col>
@@ -76,7 +77,7 @@
     <br></br>
     <v-expansion-panels>
       <v-expansion-panel
-      v-for="launch in filteredLaunches"
+      v-for="launch in sortedLaunches"
       :key="launch.mission_name"
       >
         <v-expansion-panel-title>
@@ -130,6 +131,7 @@
     }[]
   }>(query)
   const selectedYear = ref<number | null>(null)
+  const sortState = ref<'asc' | 'desc'>('asc')
   const availableYears = computed(() => {
     return [...new Set(launches.value.map(l => new Date(l.launch_date_utc).getFullYear()))]
   }
@@ -140,5 +142,9 @@
     date: new Date(launch.launch_date_utc).toLocaleDateString()
   }))
 )
+  const sortToggle = () => {
+    sortState.value = sortState.value === 'asc' ? 'desc' : 'asc'
+  }
   const { filteredLaunches } = useFilter(launches, selectedYear)
+  const { sortedLaunches } = useSort(filteredLaunches, sortState)
 </script>
