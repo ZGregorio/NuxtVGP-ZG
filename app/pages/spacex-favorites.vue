@@ -2,7 +2,7 @@
 	<NuxtPage/>
 
 	<v-container>
-		breh
+		bruh
 	</v-container>
 </template>
 <script lang="ts" setup>

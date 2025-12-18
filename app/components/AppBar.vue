@@ -30,6 +30,13 @@
                 to="/spacex-rocket"
                 prepend-icon="mdi-rocket"
             />
+
+            <v-list-item
+                title="SpaceX Rocket Favorites"
+                component="NuxtLink"
+                to="/spacex-favorites"
+                prepend-icon="mdi-star"
+            />
             </v-list>
         </v-navigation-drawer>
     </header>
