@@ -47,6 +47,11 @@
   <NuxtPage/>
 
   <v-container>
+    <v-select
+      label="Filter by Year"
+      :items="availableYears"
+      v-model="selectedYear"
+    ></v-select>
     <v-row 
         class="w-100 align-center justify-center">
       <v-col class="text-center">
@@ -65,7 +70,7 @@
     <br></br>
     <v-expansion-panels>
       <v-expansion-panel
-      v-for="launch in launches"
+      v-for="launch in filteredLaunches"
       :key="launch.mission_name"
       >
         <v-expansion-panel-title>
@@ -74,7 +79,7 @@
               <strong>{{ launch.mission_name ?? 'No mission name data Available.' }}</strong>
             </v-col>
             <v-col  class="text-center">
-              {{ new Date(launch.launch_date_utc).toLocaleDateString() ?? 'No launch date data Available.' }}
+              {{ launch.date ?? 'No launch date data Available.' }}
             </v-col>
             <v-col  class="text-center">
               {{ launch.launch_site?.site_name_long ?? 'No launch site data Available.' }}
@@ -93,30 +98,41 @@
 </template>
 
 <script lang="ts" setup>
-const query = gql`  
-	query getLaunches {
-  launches {
-    mission_name
-    launch_date_utc
-    launch_site {
-      site_name_long
+  import { ref } from 'vue'
+  const query = gql`  
+    query getLaunches {
+    launches {
+      mission_name
+      launch_date_utc
+      launch_site {
+        site_name_long
+      }
+      rocket {
+        rocket_name
+      }
+      details
     }
-    rocket {
-      rocket_name
-    }
-    details
   }
-}
-`
-const { data } = useAsyncQuery<{
-  launches: {
-    mission_name: string
-    launch_date_utc: string
-    launch_site: { site_name_long: string }
-    rocket: { rocket_name: string }
-    details: string
-  }[]
-}>(query)
-
-const launches = computed(() => data.value?.launches ?? [])
+  `
+  const { data } = useAsyncQuery<{
+    launches: {
+      mission_name: string
+      launch_date_utc: string
+      launch_site: { site_name_long: string }
+      rocket: { rocket_name: string }
+      details: string
+    }[]
+  }>(query)
+  const selectedYear = ref<number | null>(null)
+  const availableYears = computed(() => {
+    return [...new Set(launches.value.map(l => new Date(l.launch_date_utc).getFullYear()))]
+  }
+)
+  const launches = computed(() => 
+  (data.value?.launches ?? []).map(launch => ({
+    ...launch,
+    date: new Date(launch.launch_date_utc).toLocaleDateString()
+  }))
+)
+  const { filteredLaunches } = useFilter(launches, selectedYear)
 </script>
